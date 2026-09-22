@@ -1,0 +1,14 @@
+﻿nombre,url,tipo,tope
+Brains Real Estate News,https://brainsre.news/feed/,especializada,20
+Democrata,https://democrata.es/feed/,generalista,20
+Construible,https://www.construible.es/feed,especializada,20
+Innovando en la construccion,https://www.innovandoenlaconstruccion.com/feed/,especializada,20
+OVACEN,https://ovacen.com/feed/,especializada,20
+Fotocasa Research,https://www.fotocasa.es/blog/feed/,especializada,14
+Europa Press - Economia,https://www.europapress.es/rss/rss.aspx?ch=00072,generalista,20
+20minutos - Vivienda,https://www.20minutos.es/rss/vivienda/,especializada,20
+Expansion - Inmobiliario,https://www.expansion.com/rss/empresas/inmobiliario.xml,suscripcion,20
+Inmodiario,https://www.inmodiario.com/feed,especializada,20
+El Periodico de la Energia,https://www.elperiodicodelaenergia.com/feed/,especializada,8
+Comision Europea - Sala de prensa,https://ec.europa.eu/commission/presscorner/api/rss?language=es,oficial,20
+BOE - Sumario del dia,https://www.boe.es/rss/boe.php,oficial,20

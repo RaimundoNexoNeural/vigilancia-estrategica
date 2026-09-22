@@ -1,0 +1,15 @@
+﻿Corpus de la sesion 4 - Vigilancia Estrategica Aumentada con IA
+Ultima descarga: 22/09/2026 a las 20:09
+Ventana: ultimos 14 dias
+Modo: limpiado
+
+128 noticias en noticias/, en Markdown y legibles por si
+solas. El indice esta en indice.csv. Los datos abiertos, en datos/.
+
+Cada ficha indica si se ha podido recuperar el cuerpo del articulo
+(cuerpo_completo: si / parcial / no) y un pre-filtro tematico
+(relevancia_prefiltro: alta / dudosa / fuera). No se ha borrado nada:
+lo que no viene al caso esta marcado, no eliminado.
+
+De la prensa se conserva un extracto y el enlace al original, nunca
+el articulo completo. Nada esta generado: todo es verificable en su URL.

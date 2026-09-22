@@ -1,0 +1,4 @@
+# Material de formacion para un grupo concreto.
+# No es un sitio publico: no debe indexarse en buscadores.
+User-agent: *
+Disallow: /
