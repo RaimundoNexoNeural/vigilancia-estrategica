@@ -100,6 +100,13 @@
     padding:11px 14px;border-bottom:1px solid var(--linea);text-align:left;
     vertical-align:top;font-size:.95rem;
   }
+  /* Una línea por celda. Con el corpus clasificado hay doce columnas o más, y
+     si el texto se parte, cada fila ocupa tres líneas y en pantalla compartida
+     caben seis noticias. El texto entero está en el panel de lectura, y al
+     pasar el ratón sale completo. */
+  table.datos td{
+    max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
   table.datos th{
     position:sticky;top:0;z-index:2;background:#e9f1f2;font-weight:600;
     white-space:nowrap;cursor:pointer;user-select:none;
@@ -109,8 +116,12 @@
   table.datos tbody tr{cursor:pointer}
   table.datos tbody tr:nth-child(even){background:#fafcfc}
   table.datos tbody tr:hover{background:var(--acento-flojo)}
-  td.col-titular{min-width:320px;max-width:640px;font-weight:500}
-  td.col-url,td.col-archivo{max-width:250px;overflow-wrap:anywhere;font-size:.85rem}
+  /* Estas van con table.datos delante a propósito: si no, la regla general de
+     arriba pesa más y les impone su max-width. */
+  table.datos td.col-titular{min-width:340px;max-width:520px;font-weight:500}
+  table.datos td.col-fuente{max-width:230px}
+  table.datos td.col-fecha{white-space:nowrap;max-width:none}
+  td.col-url,td.col-archivo{max-width:250px;font-size:.85rem}
   td.col-motivo_cuerpo,td.col-motivo_prefiltro{max-width:320px;font-size:.87rem;
     color:var(--suave)}
   td.numero{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -422,7 +433,11 @@
                                  //  no queremos es filtrar por titular o por URL)
   var MAX_LARGO_CHIP = 50;       // valores más largos que esto no son
                                  // categorías, son texto libre (los motivos)
-  var MAX_CHIPS_EN_LINEA = 5;    // con más valores, el grupo pasa a desplegable
+  // Todos los grupos van como desplegable, no como chips sueltos. Con el corpus
+  // sin clasificar cabían en una línea; en cuanto se clasifica salen diez o doce
+  // grupos y la barra se comía media pantalla. Los recuentos no se pierden: están
+  // dentro del desplegable, y verlos ahí es más legible que un muro de colores.
+  var MAX_CHIPS_EN_LINEA = 0;
 
   // Nombres legibles para las columnas conocidas. Una columna que no esté aquí
   // se muestra con su propio nombre, así que nada deja de funcionar.
@@ -441,7 +456,15 @@
     columnas: [], registros: [], visibles: [], filtros: {},
     orden: null, ordenAsc: true, origen: "", filas: []
   };
-  var ORIGINALES = [];
+  // Las once columnas del contrato de descarga. Todo lo que venga ADEMÁS de
+  // esto es clasificación, y se muestra solo al cargar. Antes esta lista se
+  // rellenaba con las columnas del primer CSV leído; eso funcionaba al cargar
+  // un fichero aparte, pero dejaba de funcionar en cuanto la clasificación se
+  // fundía en indice.csv: al abrir la página, las columnas nuevas ya venían en
+  // el primer fichero y no se distinguían de las de siempre.
+  var ORIGINALES = ["id", "archivo", "titular", "fuente", "fecha", "url",
+                    "cuerpo_completo", "motivo_cuerpo", "palabras_cuerpo",
+                    "relevancia_prefiltro", "motivo_prefiltro"];
 
   var zonaTabla = document.getElementById("zonaTabla");
   var busqueda = document.getElementById("busqueda");
@@ -515,6 +538,9 @@
     var td = document.createElement("td");
     td.className = "col-" + columna;
     if (esNumerica(columna)) td.classList.add("numero");
+    // Las celdas se cortan a una línea, así que el valor entero va en el
+    // tooltip: con pasar el ratón se lee sin abrir la noticia.
+    if (valor.length > 30) td.title = valor;
 
     if (/^https?:\/\//.test(valor)) {
       var a = document.createElement("a");
@@ -960,7 +986,6 @@
     leerTexto(base + "indice.csv").then(function (texto) {
       var datos = parsearCsv(texto);
       if (!datos.registros.length) throw new Error("el índice está vacío");
-      if (!ORIGINALES.length) ORIGINALES = datos.columnas.slice();
       cargar(datos.columnas, datos.registros, "indice.csv");
     }).catch(function (e) {
       avisar("No se ha podido leer " + base + "indice.csv (" + e.message + "). " +

@@ -112,7 +112,24 @@ ganando columnas. El orden es siempre este:
    vacías. **Nunca se reemplaza el fichero entero**: en una sesión se clasifica una parte
    del corpus, y reemplazar borraría el resto.
 
-Seleccionar escribe `corpus/seleccion.md`.
+Seleccionar hace lo mismo un escalón más arriba: copia de seguridad en
+`indice-antes-de-seleccionar.csv`, el informe en `corpus/seleccion.md`, y tres columnas
+más fundidas por `id` en `indice.csv` — `seleccionada` (`si` / `no`), `motivo_seleccion`
+y `criterio_seleccion`, que guarda la frase con la que se decidió. Así lo elegido se
+filtra en el visor, y dentro de dos semanas se sabe de dónde salió.
+
+Si se le pasa una **etiqueta**, esas tres columnas llevan su sufijo
+(`seleccionada_ancho`…) y **dos selecciones distintas conviven** en vez de pisarse.
+
+### Para deshacer
+
+| Qué se quiere | Qué se copia sobre `indice.csv` |
+|---|---|
+| Quitar la última selección | `indice-antes-de-seleccionar.csv` |
+| Quitar selección y clasificación | `indice-antes-de-clasificar.csv` |
+| Dejarlo como recién descargado | nada: se vuelve a ejecutar el descargador |
+
+Las copias guardan **solo el estado inmediatamente anterior**: se rehacen en cada pasada.
 
 > **Primero se descarga, después se clasifica. Nunca al revés.** `descargar_corpus.py`
 > reescribe `indice.csv` con sus once columnas y descarta en silencio cualquier otra, así

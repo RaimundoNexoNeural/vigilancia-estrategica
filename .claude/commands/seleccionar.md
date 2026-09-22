@@ -1,6 +1,6 @@
 ---
 description: Prioriza lo ya clasificado con el criterio de selección que se acuerde
-argument-hint: [criterio de selección] [fichero o corpus, por defecto corpus/clasificado.csv]
+argument-hint: [criterio de selección] [corpus, por defecto corpus/] [etiqueta opcional]
 ---
 
 # Seleccionar
@@ -9,10 +9,10 @@ De todo lo clasificado, quedarse con lo que merece llegar a alguien. **No es res
 priorizar con un criterio explícito y escrito**, que es lo que hace el resultado auditable
 y repetible.
 
-**Criterio:** $1 · **Sobre:** $2
+**Criterio:** $1 · **Sobre:** $2 · **Etiqueta:** $3
 
-Si no viene fichero, usa `corpus/clasificado.csv`; si no existe, `corpus/indice.csv`. Si no
-viene criterio, propón el de abajo, di que es para discutirlo, y sigue con él.
+Si no viene corpus, usa `corpus/`. Si no viene criterio, propón el de abajo, di que es
+para discutirlo, y sigue con él.
 
 ## Criterio de partida
 
@@ -24,6 +24,69 @@ seleccionadas. Si hay más candidatas, prioriza por efecto sobre la Agencia, no 
 importancia general.*
 
 ## Qué tienes que entregar
+
+Tres cosas, y cada una se ve en un sitio distinto:
+
+| Dónde | Qué |
+|---|---|
+| **En el chat** | el informe entero, que es lo que se lee en voz alta y se discute |
+| **`corpus/seleccion.md`** | ese mismo informe en un fichero, para llevárselo |
+| **`corpus/indice.csv`** | dos columnas nuevas, para poder verlo en el visor |
+
+### Las tres columnas del índice
+
+Igual que al clasificar: **copia antes** `indice.csv` a
+`indice-antes-de-seleccionar.csv`, y después añade emparejando por `id`:
+
+- `seleccionada` — `si` en las elegidas, `no` en el resto. **Nunca en blanco**, porque el
+  filtro del visor necesita los dos valores para poder contar.
+- `motivo_seleccion` — en las elegidas, qué parte del criterio cumple, en una frase.
+  Vacío en las demás.
+- `criterio_seleccion` — **el criterio literal, el mismo texto en las 128 filas.** Es lo
+  que permite saber, mirando solo el fichero, con qué frase se decidió esto. Sin esta
+  columna, dentro de dos semanas nadie sabe de dónde salió la selección.
+
+Así, al recargar el visor, se filtra por `seleccionada = si` y **las elegidas quedan solas
+en pantalla, con toda su clasificación al lado**. Es la demostración de que el criterio
+escrito hace el mismo recorrido que haría una persona, pero sobre 128 noticias.
+
+No toques ninguna de las columnas anteriores, ni las once de la descarga ni las de
+clasificar.
+
+### Si hay etiqueta, la selección no pisa la anterior
+
+**Sin etiqueta**, las tres columnas se llaman como arriba y **una segunda pasada
+sobrescribe la primera**. Es lo normal: se prueba un criterio, no convence, se repite.
+
+**Con etiqueta** —el tercer argumento: `ancho`, `estrecho`, `financiacion`…— las columnas
+pasan a llamarse `seleccionada_ancho`, `motivo_seleccion_ancho` y
+`criterio_seleccion_ancho`. Entonces **las dos selecciones conviven** y se pueden comparar
+columna contra columna en el visor.
+
+Eso es justo lo que hay que enseñar: mismo corpus, dos frases, dos resultados. Si te
+piden repetir con otro criterio, **sugiere tú la etiqueta** en vez de sobrescribir.
+
+La etiqueta se normaliza: minúsculas, sin acentos, sin espacios.
+
+### Cómo se borra una selección
+
+Hay que decírselo si lo preguntan, porque no es evidente:
+
+- **Deshacer la última**: copiar `indice-antes-de-seleccionar.csv` sobre `indice.csv`.
+  Ojo, esa copia solo guarda el estado **inmediatamente anterior**: se rehace en cada
+  pasada.
+- **Quitar selección y clasificación de golpe**: copiar
+  `indice-antes-de-clasificar.csv` sobre `indice.csv`.
+- **Dejarlo como recién descargado**: volver a ejecutar el descargador, que reescribe el
+  índice con sus once columnas.
+
+Y la consecuencia que hay que avisar: **al descargar noticias nuevas se pierden todas
+estas columnas**, porque el descargador solo conoce las once. No es un fallo: el orden es
+descargar, luego clasificar, luego seleccionar. Si se amplía el corpus, se repiten los
+dos pasos — y como el criterio quedó escrito en `criterio_seleccion`, repetirlo es copiar
+una frase.
+
+### El informe
 
 Escribe `corpus/seleccion.md` con cinco bloques, en este orden:
 
