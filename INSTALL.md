@@ -4,7 +4,7 @@ Hay dos formas. La primera no requiere instalar nada y es la recomendada.
 
 ## 1. En el navegador, sin instalar nada
 
-Abrid esta dirección: *(pendiente de publicar — os la pasaré por el chat)*
+Abrid esta dirección: https://raimundonexoneural.github.io/vigilancia-estrategica/
 
 Funciona en cualquier equipo y en cualquier navegador, también dentro de la
 Agencia, y no hay nada que instalar ni que configurar.
