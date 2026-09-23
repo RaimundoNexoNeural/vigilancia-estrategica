@@ -7,8 +7,11 @@ Instituto de Estudios Cajasol.
 
 - **[Abrir el visor del corpus](index.html)** — la tabla de noticias, con buscador,
   filtros, selector de columnas y lectura en pantalla completa.
-- `corpus/` — las noticias en `noticias/`, su índice en `indice.csv`, y las series
-  de datos abiertos en `datos/`, cada una con su ficha.
+- `corpus/` — las noticias en `noticias/`, su índice en `indice.csv` (con la
+  clasificación y la selección hechas en la sesión, si ya se han fundido), y las
+  series de datos abiertos en `datos/`, cada una con su ficha.
+- `corpus/seleccion.md` — el informe de la selección hecha en clase: qué se eligió,
+  con qué criterio y por qué. Si aún no se ha seleccionado nada, no está.
 - `prompts/` — las tres plantillas: extraer, clasificar y seleccionar. Son
   editables y usan periodos relativos, así que sirven igual dentro de dos semanas.
 - `script/` — los scripts de descarga en Python, para quien quiera automatizarlo.
