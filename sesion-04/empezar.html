@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Empezad por aquí — Sesión 4</title>
+<style>
+  :root{
+    --tinta:#10303a; --suave:#5a7683; --linea:#d7e3e8; --fondo:#f2f6f7;
+    --papel:#fff; --acento:#0d7b7b; --flojo:#e6f2f2; --ojo:#8a5a00;
+    color-scheme: light;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:0 20px 70px;
+       font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+       color:var(--tinta);background:var(--fondo);
+       padding-top:env(safe-area-inset-top,0px)}
+  .caja{max-width:780px;margin:0 auto}
+  header{padding:42px 0 26px;border-bottom:2px solid var(--acento);margin-bottom:30px}
+  .volver{color:var(--acento);text-decoration:none;font-size:.9rem;font-weight:600}
+  h1{margin:14px 0 8px;font-size:1.75rem;line-height:1.2}
+  .sub{margin:0;color:var(--suave)}
+  h2{font-size:1.25rem;margin:38px 0 12px;padding-top:6px}
+  h3{font-size:1.02rem;margin:26px 0 8px}
+  p{margin:12px 0}
+  .paso{background:var(--papel);border:1px solid var(--linea);border-radius:14px;
+        padding:22px 26px;margin:18px 0}
+  .paso .n{display:inline-block;background:var(--acento);color:#fff;font-weight:700;
+           width:26px;height:26px;border-radius:50%;text-align:center;line-height:26px;
+           font-size:.9rem;margin-right:8px}
+  .ojo{background:#fff8e8;border-left:4px solid var(--ojo);padding:14px 18px;
+       border-radius:0 10px 10px 0;margin:18px 0;color:#6d4a08;font-size:.96rem}
+  .di{background:var(--flojo);border-left:4px solid var(--acento);padding:14px 18px;
+      border-radius:0 10px 10px 0;margin:18px 0}
+  table{border-collapse:collapse;width:100%;background:var(--papel);
+        border:1px solid var(--linea);border-radius:12px;overflow:hidden;margin:16px 0}
+  th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--linea);
+        font-size:.95rem;vertical-align:top}
+  th{background:#e9f1f2;font-weight:600}
+  tr:last-child td{border-bottom:none}
+  code{background:#e9f1f2;padding:2px 7px;border-radius:5px;
+       font:0.88em ui-monospace,Consolas,monospace}
+  a{color:var(--acento)}
+  .cta{display:inline-block;background:var(--acento);color:#fff;text-decoration:none;
+       padding:12px 22px;border-radius:9px;font-weight:600;margin-top:6px}
+  footer{margin-top:44px;padding-top:22px;border-top:1px solid var(--linea);
+         color:var(--suave);font-size:.9rem}
+  @media (max-width:520px){ h1{font-size:1.4rem} .paso{padding:18px} }
+</style>
+</head>
+<body>
+<div class="caja">
+
+<header>
+  <a class="volver" href="../">← Todas las sesiones</a>
+  <h1>Empezad por aquí</h1>
+  <p class="sub">Sesión 4 · Vigilancia Estratégica Aumentada con IA<br>
+     AVRA · Instituto de Estudios Cajasol</p>
+</header>
+
+<p>Esta es la única página que hace falta leer. Son dos minutos.</p>
+
+<h2>1 · Lo primero: ved que funciona</h2>
+
+<div class="paso">
+  <p><span class="n">1</span> Abrid <b>el visor de noticias</b>.</p>
+  <p><span class="n">2</span> Pulsad <b>«Abrir un CSV»</b> → <b>«Elegir fichero»</b> y
+     elegid <b><code>noticias.csv</code></b>.</p>
+  <p style="margin-top:16px"><a class="cta" href="index.html">Abrir el visor →</a></p>
+</div>
+
+<p>Ya está. <b>145 noticias</b> reales, descargadas durante la sesión, con sus filtros.
+   Pinchad en cualquier fila y se lee el artículo entero.</p>
+
+<div class="ojo">
+  <b>No hay que instalar nada para esto.</b> Ni Python, ni permisos, ni una cuenta.
+  <p style="margin:9px 0 0">Si abrís la página desde vuestro ordenador con doble clic, os
+  dirá que pulséis «Abrir un CSV». No es un error: el navegador no deja que una página
+  abierta desde el disco lea ficheros por su cuenta, así que hay que elegirlo a mano.
+  Es una sola vez.</p>
+</div>
+
+<h2>2 · Qué es todo esto</h2>
+
+<p>Un <b>circuito de tres pasos</b> para vigilar el entorno con ayuda de una IA:</p>
+
+<table>
+  <tr><th style="width:130px">Extraer</th>
+      <td>reunir lo publicado sobre vuestros temas, con su fuente y su enlace</td></tr>
+  <tr><th>Clasificar</th>
+      <td>ordenarlo contra vuestras categorías, no las de la máquina</td></tr>
+  <tr><th>Seleccionar</th>
+      <td>quedarse con lo que merece llegar a alguien, con un criterio escrito</td></tr>
+</table>
+
+<p>Lo importante no son las herramientas: es que <b>el criterio queda escrito</b>. Por eso
+   se puede auditar, repetir dentro de dos semanas y defender sin decir que lo hizo una
+   IA.</p>
+
+<h2>3 · A qué carpeta ir</h2>
+
+<p>Según lo que tengáis. <b>Las cuatro hacen el mismo trabajo</b>: cambia el envoltorio, no
+   el contenido.</p>
+
+<table>
+  <tr><th>Si tenéis…</th><th>Id a</th><th>Hace falta instalar</th></tr>
+  <tr><td><b>Gemini, ChatGPT o cualquier chat</b></td>
+      <td><a href="1-prompts/README.md"><code>1-prompts</code></a></td>
+      <td><b>nada</b></td></tr>
+  <tr><td>Claude en el navegador</td>
+      <td><a href="2-skills/README.md"><code>2-skills</code></a></td>
+      <td>nada, se suben tres ficheros</td></tr>
+  <tr><td>Claude de pago (Claude Code)</td>
+      <td><a href="3-comandos/README.md"><code>3-comandos</code></a></td>
+      <td>sí, y cuesta dinero</td></tr>
+  <tr><td>Ganas de trastear con Python</td>
+      <td><a href="4-script/README.md"><code>4-script</code></a></td>
+      <td>sí, pero es opcional</td></tr>
+</table>
+
+<div class="di">
+  <b>Si dudáis, id a <code>1-prompts</code>.</b> Es la vía principal, funciona con cuenta
+  gratuita y es la que usa casi todo el grupo.
+</div>
+
+<h2>4 · Qué hay en la carpeta</h2>
+
+<table>
+  <tr><td><code>index.html</code></td><td>el visor. Doble clic y funciona</td></tr>
+  <tr><td><code>noticias.csv</code></td><td>las 145 noticias, con su texto dentro</td></tr>
+  <tr><td><code>fuentes.csv</code></td><td>los medios que se vigilan. <b>Este lo vais a querer cambiar</b></td></tr>
+  <tr><td><code>1-prompts</code></td><td>las plantillas para pegar en cualquier chat</td></tr>
+  <tr><td><code>2-skills</code></td><td>lo mismo, para Claude del navegador</td></tr>
+  <tr><td><code>3-comandos</code></td><td>lo mismo, para Claude Code</td></tr>
+  <tr><td><code>4-script</code></td><td>el descargador en Python</td></tr>
+</table>
+
+<p>Cada carpeta tiene su <code>README.md</code> —qué es y cómo se usa— y, las que lo
+   necesitan, un <code>INSTALL.md</code> con los pasos exactos.</p>
+
+<h2>5 · Esto todavía no es vuestro</h2>
+
+<p>Y es la parte que más importa.</p>
+
+<p>Las fuentes y las categorías que vienen son <b>las que parecieron razonables al preparar
+   la sesión</b>. Las vuestras son otras: en clase ya salieron bastantes que no estaban.</p>
+
+<p>Todos los ficheros son <b>texto normal</b>: se abren con el Bloc de notas y se guardan
+   igual. No hay nada que compilar ni que validar. Dentro de las plantillas veréis huecos
+   así:</p>
+
+<p><code>[  ▸ AQUÍ LAS CATEGORÍAS ◂  ]</code></p>
+
+<p>Eso es lo que hay que sustituir. El README de cada carpeta dice exactamente qué línea se
+   toca para cambiar fuentes, temas, categorías, criterios o columnas.</p>
+
+<div class="di">
+  <b>Guardad vuestra versión.</b> En la próxima sesión se pidió que quien haya modificado
+  sus fuentes o sus categorías las comparta, para que los casos siguientes se hagan ya con
+  material vuestro de verdad y no con el de ejemplo.
+</div>
+
+<h2>6 · Dos cosas prácticas</h2>
+
+<h3>Abrir el CSV en LibreOffice Calc</h3>
+<p>Doble clic. Al abrirlo pregunta por el formato: aseguraos de que el juego de caracteres
+   es <b>UTF-8</b> y el separador es la <b>coma</b>. Si no, los acentos salen rotos.</p>
+
+<h3>Si un CSV sale con columnas de más o de menos</h3>
+<p><b>El visor no se rompe</b>: pinta las que haya. Está hecho así a propósito, porque cada
+   herramienta de IA devuelve las cosas un poco distintas. Lo único que conviene que no
+   falte es <code>titular</code>, <code>url</code>, <code>relevancia_prefiltro</code> y
+   <code>cuerpo</code>.</p>
+
+<h2>Una advertencia honesta</h2>
+
+<p>Nada de esto sustituye vuestro criterio. La IA sintetiza lo que ya existe; las preguntas
+   difíciles de un sistema de vigilancia maduro exigen <b>producir información que todavía
+   no existe</b> —preguntar a las empresas, mandar un formulario, ir al dato primario—.</p>
+
+<p>Por eso todas las plantillas terminan pidiéndole a la herramienta que declare <b>lo que
+   no puede saber</b>. Esa parte es la vuestra.</p>
+
+<footer>
+  <p>Cada noticia conserva su fuente, su fecha y su enlace de origen. Nada está generado:
+     todo es verificable abriendo su enlace.</p>
+</footer>
+
+</div>
+</body>
+</html>
