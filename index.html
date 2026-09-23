@@ -4,938 +4,109 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Noticias — Vigilancia estratégica</title>
-<script>window.BASE = "./";</script>
+<title>Vigilancia Estratégica Aumentada con IA — material del curso</title>
 <style>
   :root{
-    --tinta:#102e38; --suave:#57727e; --linea:#d7e3e8; --fondo:#f2f6f7;
-    --papel:#ffffff; --acento:#0d7b7b; --acento-flojo:#e6f2f2;
-    --alta:#0a6b45; --dudosa:#8a5a00; --fuera:#9a3b3b;
-    --g1:#0d7b7b; --g2:#7a4fb5; --g3:#b56a12; --g4:#2f6fb5; --g5:#a03c6a;
+    --tinta:#10303a; --suave:#5a7683; --linea:#d7e3e8; --fondo:#f2f6f7;
+    --papel:#fff; --acento:#0d7b7b; --acento-flojo:#e6f2f2;
     color-scheme: light;
   }
   *{box-sizing:border-box}
-  html,body{height:100%}
   body{
-    margin:0; font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    color:var(--tinta); background:var(--fondo);
+    margin:0;padding:0 20px 60px;
+    font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    color:var(--tinta);background:var(--fondo);
     padding-top:env(safe-area-inset-top,0px);
-    display:flex; flex-direction:column; height:100vh; overflow:hidden;
   }
+  .caja{max-width:820px;margin:0 auto}
 
-  header{padding:14px 20px 0;background:var(--papel)}
-  .titulo-fila{display:flex;flex-wrap:wrap;gap:14px;align-items:baseline}
-  h1{margin:0;font-size:1.2rem;letter-spacing:-.01em}
-  .subtitulo{margin:0;color:var(--suave);font-size:.85rem}
+  header{padding:46px 0 30px;border-bottom:2px solid var(--acento);margin-bottom:34px}
+  h1{margin:0 0 8px;font-size:1.9rem;line-height:1.2;letter-spacing:-.01em}
+  .sub{margin:0;color:var(--suave);font-size:1.02rem}
 
-  /* ---------- barra de filtros ---------- */
-  .barra{background:var(--papel);border-bottom:1px solid var(--linea);
-         padding:12px 20px 14px;border-top:1px solid var(--linea)}
-  .barra-fila{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-  input[type=search],select,button.accion{
-    font:inherit;font-size:.92rem;padding:8px 12px;border:1px solid var(--linea);
-    border-radius:8px;background:var(--papel);color:inherit;
-  }
-  input[type=search]{flex:1 1 300px;min-width:0}
-  button.accion{cursor:pointer;white-space:nowrap}
-  button.accion:hover{border-color:var(--acento);color:var(--acento)}
-  .cuenta{color:var(--suave);font-size:.9rem;margin-left:auto;white-space:nowrap}
-  .cuenta strong{color:var(--tinta)}
+  .intro{background:var(--acento-flojo);border-left:4px solid var(--acento);
+         padding:16px 20px;border-radius:0 10px 10px 0;margin-bottom:34px}
+  .intro p{margin:0}
+  .intro p + p{margin-top:9px}
 
-  .grupos{display:flex;flex-wrap:wrap;gap:10px;margin-top:11px;align-items:flex-start}
-  .grupo{
-    display:flex;align-items:center;gap:8px;padding:6px 10px 6px 8px;
-    border:1px solid var(--linea);border-left:4px solid var(--color,var(--acento));
-    border-radius:9px;background:#fbfdfd;max-width:100%;
-  }
-  .grupo .nombre{
-    color:var(--color,var(--acento));font-size:.74rem;font-weight:700;
-    text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;
-  }
-  .grupo .chips{display:flex;gap:5px;flex-wrap:nowrap;overflow-x:auto;max-width:100%}
-  .chip{
-    font:inherit;font-size:.86rem;padding:4px 12px;border-radius:999px;
-    border:1px solid var(--linea);background:var(--papel);color:var(--suave);
-    cursor:pointer;white-space:nowrap;
-  }
-  .chip:hover{border-color:var(--color,var(--acento));color:var(--color,var(--acento))}
-  .chip[aria-pressed=true]{background:var(--color,var(--acento));
-    border-color:var(--color,var(--acento));color:#fff;font-weight:600}
-  .chip .n{opacity:.7;font-size:.8em;margin-left:6px;font-variant-numeric:tabular-nums}
+  h2{font-size:.86rem;letter-spacing:.1em;text-transform:uppercase;
+     color:var(--suave);margin:0 0 14px;font-weight:600}
 
-  .desplegable{position:relative}
-  .menu{
-    position:absolute;z-index:40;top:calc(100% + 7px);left:0;background:var(--papel);
-    border:1px solid var(--linea);border-radius:10px;padding:10px 14px;min-width:260px;
-    max-height:58vh;overflow:auto;box-shadow:0 10px 30px rgba(16,46,56,.16);
+  .sesion{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--papel);border:1px solid var(--linea);border-radius:14px;
+    padding:20px 24px;margin-bottom:14px;
+    transition:border-color .12s, box-shadow .12s;
   }
-  .menu.derecha{left:auto;right:0}
-  .menu label{display:flex;gap:9px;align-items:center;padding:5px 0;font-size:.92rem;
-              cursor:pointer;white-space:nowrap}
-  .menu label .n{margin-left:auto;color:var(--suave);font-size:.82em;
-                 font-variant-numeric:tabular-nums}
-  .menu .separador{border-top:1px solid var(--linea);margin:7px 0}
+  .sesion:hover{border-color:var(--acento);box-shadow:0 2px 14px rgba(13,123,123,.11)}
+  .sesion .fecha{color:var(--acento);font-size:.82rem;font-weight:600;
+                 letter-spacing:.06em;text-transform:uppercase}
+  .sesion h3{margin:5px 0 7px;font-size:1.18rem;line-height:1.3}
+  .sesion p{margin:0;color:var(--suave);font-size:.95rem}
+  .sesion .ir{display:inline-block;margin-top:12px;color:var(--acento);
+              font-weight:600;font-size:.93rem}
 
-  .cargador{margin-top:12px;padding:13px 15px;background:var(--acento-flojo);
-            border-radius:10px}
-  .cargador p{margin:0 0 9px;font-size:.9rem;color:#20505a}
-  .cargador textarea{
-    width:100%;min-height:96px;font:13px/1.5 ui-monospace,Consolas,monospace;
-    padding:9px;border:1px solid var(--linea);border-radius:8px;resize:vertical;
+  .proxima{
+    background:transparent;border:1px dashed var(--linea);border-radius:14px;
+    padding:18px 24px;margin-bottom:14px;color:var(--suave);font-size:.95rem;
   }
-  .cargador .acciones{display:flex;flex-wrap:wrap;gap:9px;margin-top:9px;align-items:center}
+  .proxima b{color:var(--tinta);font-weight:600}
 
-  /* ---------- tabla ---------- */
-  .zona-tabla{flex:1;min-height:0;overflow:auto;background:var(--papel)}
-  table.datos{border-collapse:collapse;width:100%}
-  table.datos th,table.datos td{
-    padding:11px 14px;border-bottom:1px solid var(--linea);text-align:left;
-    vertical-align:top;font-size:.95rem;
-  }
-  /* Una línea por celda. Con el corpus clasificado hay doce columnas o más, y
-     si el texto se parte, cada fila ocupa tres líneas y en pantalla compartida
-     caben seis noticias. El texto entero está en el panel de lectura, y al
-     pasar el ratón sale completo. */
-  table.datos td{
-    max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  }
-  table.datos th{
-    position:sticky;top:0;z-index:2;background:#e9f1f2;font-weight:600;
-    white-space:nowrap;cursor:pointer;user-select:none;
-  }
-  table.datos th:hover{color:var(--acento)}
-  table.datos th .flecha{opacity:.6;font-size:.8em;margin-left:5px}
-  table.datos tbody tr{cursor:pointer}
-  table.datos tbody tr:nth-child(even){background:#fafcfc}
-  table.datos tbody tr:hover{background:var(--acento-flojo)}
-  /* Estas van con table.datos delante a propósito: si no, la regla general de
-     arriba pesa más y les impone su max-width. */
-  table.datos td.col-titular{min-width:340px;max-width:520px;font-weight:500}
-  table.datos td.col-fuente{max-width:230px}
-  table.datos td.col-fecha{white-space:nowrap;max-width:none}
-  td.col-url,td.col-archivo{max-width:250px;font-size:.85rem}
-  td.col-motivo_cuerpo,td.col-motivo_prefiltro{max-width:320px;font-size:.87rem;
-    color:var(--suave)}
-  td.numero{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .marca{display:inline-block;font-size:.8rem;padding:2px 10px;border-radius:999px;
-         border:1px solid currentColor;white-space:nowrap}
-  .marca.alta{color:var(--alta)} .marca.dudosa{color:var(--dudosa)}
-  .marca.fuera{color:var(--fuera)} .marca.neutra{color:var(--suave)}
-
-  /* ---------- modal de lectura ---------- */
-  .lectura .credito{color:var(--suave);font-size:.9rem;margin:0 0 18px}
-  .modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;
-         justify-content:center;padding:24px}
-  .modal-fondo{position:absolute;inset:0;background:rgba(10,32,40,.55)}
-  .modal-caja{
-    position:relative;background:var(--papel);border-radius:14px;
-    width:min(940px,100%);max-height:88vh;display:flex;flex-direction:column;
-    box-shadow:0 24px 60px rgba(8,28,36,.35);overflow:hidden;
-  }
-  .modal-cabecera{
-    display:flex;align-items:center;gap:12px;padding:14px 20px;
-    border-bottom:1px solid var(--linea);background:#f7fbfb;
-  }
-  .modal-cabecera .etiquetas{display:flex;gap:7px;flex-wrap:wrap;flex:1;margin:0}
-  .modal-cabecera button{
-    font:inherit;font-size:.9rem;padding:6px 13px;border:1px solid var(--linea);
-    border-radius:8px;background:var(--papel);cursor:pointer;white-space:nowrap;
-  }
-  .modal-cabecera button:hover{border-color:var(--acento);color:var(--acento)}
-  .modal-cuerpo{overflow-y:auto;padding:26px 34px 34px}
-  .lectura h1{font-size:1.45rem;margin:0 0 12px;line-height:1.28}
-  .lectura h2{font-size:1.08rem;margin:22px 0 8px}
-  .lectura p{margin:0 0 14px;font-size:1.02rem;line-height:1.65;max-width:74ch}
-  .lectura blockquote{margin:0 0 16px;padding:12px 18px;border-left:3px solid var(--acento);
-    background:#f2f8f8;color:#2d4f59;font-size:1rem;max-width:74ch}
-  .lectura hr{border:none;border-top:1px solid var(--linea);margin:20px 0}
-  .lectura em{color:var(--suave)}
-  .lectura details{margin-top:18px}
-  .lectura summary{cursor:pointer;color:var(--acento);font-size:.92rem}
-
-  .tabla-scroll{overflow-x:auto;margin:10px 0 16px}
-  .tabla-scroll table{border-collapse:collapse;width:100%;font-size:.88rem}
-  .tabla-scroll th,.tabla-scroll td{padding:7px 11px;border:1px solid var(--linea);
-    text-align:left;vertical-align:top}
-  .tabla-scroll th{background:#eef4f5;font-weight:600;white-space:nowrap}
-  .vacio{color:var(--suave);padding:40px 20px;text-align:center}
-  .aviso{background:#fff8e8;border:1px solid #f0dcb0;color:#8a5a00;
-         padding:11px 14px;border-radius:8px;margin:12px 20px;font-size:.92rem}
+  footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--linea);
+         color:var(--suave);font-size:.88rem}
+  footer p{margin:0 0 7px}
   a{color:var(--acento)}
-  [hidden]{display:none!important}
-
-  @media (max-width:900px){
-    body{overflow:auto;height:auto}
-    .zona-tabla{max-height:none}
-    .modal{padding:10px}
-    .modal-cuerpo{padding:18px 20px 26px}
-  }
+  @media (max-width:520px){ h1{font-size:1.5rem} }
 </style>
 </head>
 <body>
+<div class="caja">
 
-<header>
-  <div class="titulo-fila">
-    <h1>Noticias</h1>
-    <p class="subtitulo">Vigilancia estratégica · AVRA e Instituto de Estudios Cajasol</p>
-  </div>
-</header>
+  <header>
+    <h1>Vigilancia Estratégica Aumentada con IA</h1>
+    <p class="sub">Agencia de Vivienda y Rehabilitación de Andalucía ·
+       Instituto de Estudios Cajasol</p>
+  </header>
 
-<div class="aviso" id="aviso" hidden></div>
-
-<!-- ============ NOTICIAS ============ -->
-<div id="vistaNoticias" style="display:flex;flex-direction:column;flex:1;min-height:0">
-
-  <div class="barra">
-    <div class="barra-fila">
-      <input type="search" id="busqueda" placeholder="Buscar en toda la tabla…"
-             autocomplete="off">
-      <div class="desplegable">
-        <button class="accion" id="botonColumnas" aria-expanded="false">Columnas ▾</button>
-        <div class="menu derecha" id="menuColumnas" hidden></div>
-      </div>
-      <button class="accion" id="botonCargar" aria-expanded="false">Abrir un CSV ▾</button>
-      <button class="accion" id="botonLimpiar">Quitar filtros</button>
-      <span class="cuenta" id="cuenta"></span>
-    </div>
-
-    <div class="grupos" id="grupos"></div>
-
-    <div class="cargador" id="cargador" hidden>
-      <p><strong>Traer una tabla nueva.</strong> Elija un fichero CSV del disco o pegue aquí
-         el CSV que devuelva la IA. La tabla se repinta con las columnas que traiga.</p>
-      <input type="file" id="ficheroCsv" accept=".csv,text/csv">
-      <textarea id="pegado" placeholder="Pegue aquí el CSV, con su fila de cabecera…"></textarea>
-      <div class="acciones">
-        <button class="accion" id="botonPegar">Usar el CSV pegado</button>
-        <button class="accion" id="botonOriginal">Volver al corpus original</button>
-        <span class="cuenta" id="estadoCarga"></span>
-      </div>
-    </div>
+  <div class="intro">
+    <p>Aquí se va acumulando el material de cada sesión: las noticias con las que se
+       trabajó, las plantillas para repetir el trabajo por vuestra cuenta y las guías
+       para usarlo todo.</p>
+    <p><b>No hace falta instalar nada</b> para empezar. Cada sesión tiene dentro una
+       página que explica por dónde ir según la herramienta que uséis.</p>
   </div>
 
-  <div class="zona-tabla" id="zonaTabla"></div>
+  <h2>Sesiones disponibles</h2>
+
+  <a class="sesion" href="sesion-04/LEEME-PRIMERO.md">
+    <span class="fecha">23 de septiembre de 2026 · Módulo 2</span>
+    <h3>Sesión 4 — Extraer, clasificar y seleccionar</h3>
+    <p>El circuito completo de vigilancia sobre 145 noticias reales: reunirlas,
+       ordenarlas contra vuestras categorías y quedarse con lo que merece llegar al
+       boletín. Con las plantillas para repetirlo en Gemini, en Claude o con el
+       script.</p>
+    <span class="ir">Empezar por aquí →</span>
+  </a>
+
+  <div class="proxima">
+    <b>Sesión 5 · 28 de septiembre</b> — el material aparecerá aquí cuando se imparta.
+  </div>
+
+  <h2 style="margin-top:34px">Atajos de la sesión 4</h2>
+
+  <a class="sesion" href="sesion-04/index.html">
+    <h3>El visor de noticias</h3>
+    <p>La tabla de las 145 noticias, con buscador, filtros y lectura a pantalla
+       completa. Admite también vuestros propios CSV.</p>
+    <span class="ir">Abrir el visor →</span>
+  </a>
+
+  <footer>
+    <p>Todo el material conserva la fuente, la fecha y el enlace de origen de cada
+       noticia. Nada está generado: todo es verificable abriendo su enlace.</p>
+    <p>Material de formación para un grupo concreto. No es un sitio público.</p>
+  </footer>
+
 </div>
-
-<!-- ============ MODAL DE LECTURA ============ -->
-<div class="modal" id="modal" hidden>
-  <div class="modal-fondo" id="modalFondo"></div>
-  <div class="modal-caja" role="dialog" aria-modal="true" aria-label="Lectura de la noticia">
-    <div class="modal-cabecera">
-      <div class="etiquetas" id="modalEtiquetas"></div>
-      <button id="modalAnterior" title="Anterior">‹ Anterior</button>
-      <button id="modalSiguiente" title="Siguiente">Siguiente ›</button>
-      <button id="modalCerrar">Cerrar ✕</button>
-    </div>
-    <div class="modal-cuerpo">
-      <div class="lectura" id="lectura"></div>
-    </div>
-  </div>
-</div>
-
-  </div>
-</div>
-
-<script>
-(function () {
-  var base = window.BASE || "./";
-
-  /* ================= utilidades ================= */
-
-  function avisar(texto) {
-    var aviso = document.getElementById("aviso");
-    aviso.textContent = texto;
-    aviso.hidden = false;
-  }
-  function normalizar(t) {
-    return (t || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
-  }
-  function escapar(t) {
-    return String(t == null ? "" : t)
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  }
-  function quitarBom(buffer) {
-    var texto = (typeof buffer === "string")
-      ? buffer : new TextDecoder("utf-8").decode(buffer);
-    return texto.charCodeAt(0) === 0xFEFF ? texto.slice(1) : texto;
-  }
-  // Descarga texto decodificando SIEMPRE como UTF-8, sin dejar que el navegador
-  // adivine el juego de caracteres.
-  function leerTexto(ruta) {
-    return fetch(ruta, { cache: "no-store" }).then(function (r) {
-      if (!r.ok) throw new Error("HTTP " + r.status);
-      return r.arrayBuffer();
-    }).then(quitarBom);
-  }
-
-  /* ================= CSV ================= */
-
-  function parsearCsv(texto) {
-    var filas = [], fila = [], campo = "", entrecomillado = false;
-    texto = quitarBom(texto);
-    for (var i = 0; i < texto.length; i++) {
-      var c = texto[i];
-      if (entrecomillado) {
-        if (c === '"' && texto[i + 1] === '"') { campo += '"'; i++; }
-        else if (c === '"') { entrecomillado = false; }
-        else { campo += c; }
-      } else if (c === '"') { entrecomillado = true; }
-      else if (c === ",") { fila.push(campo); campo = ""; }
-      else if (c === "\n") { fila.push(campo); filas.push(fila); fila = []; campo = ""; }
-      else if (c !== "\r") { campo += c; }
-    }
-    if (campo !== "" || fila.length) { fila.push(campo); filas.push(fila); }
-    filas = filas.filter(function (f) {
-      return f.some(function (c) { return String(c).trim() !== ""; });
-    });
-    if (!filas.length) return { columnas: [], registros: [] };
-
-    // Las columnas salen de la cabecera del propio CSV. Nada codificado a mano.
-    var columnas = filas[0].map(function (c, i) {
-      return String(c).trim() || ("columna_" + (i + 1));
-    });
-    var registros = filas.slice(1).map(function (f) {
-      var registro = {};
-      columnas.forEach(function (col, i) { registro[col] = f[i] == null ? "" : f[i]; });
-      return registro;
-    });
-    return { columnas: columnas, registros: registros };
-  }
-
-  /* ================= Markdown mínimo ================= */
-
-  function enLinea(t) {
-    return escapar(t)
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g,
-        '<a href="$2" target="_blank" rel="noopener">$1</a>')
-      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-      .replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>")
-      .replace(/`([^`]+)`/g, "<code>$1</code>");
-  }
-
-  function aHtml(markdown) {
-    var texto = markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "");
-    var lineas = texto.split(/\r?\n/);
-    var salida = [], parrafo = [], tabla = [];
-
-    function cerrarParrafo() {
-      if (parrafo.length) {
-        salida.push("<p>" + enLinea(parrafo.join(" ")) + "</p>");
-        parrafo = [];
-      }
-    }
-    function cerrarTabla() {
-      if (!tabla.length) return;
-      var filas = tabla.filter(function (f) { return !/^\s*\|[\s|:-]+\|\s*$/.test(f); });
-      var html = ['<div class="tabla-scroll"><table>'];
-      filas.forEach(function (fila, i) {
-        var celdas = fila.replace(/^\||\|$/g, "").split("|").map(function (c) {
-          return enLinea(c.trim());
-        });
-        var etiqueta = (i === 0 && celdas.some(function (c) { return c; })) ? "th" : "td";
-        html.push("<tr>" + celdas.map(function (c) {
-          return "<" + etiqueta + ">" + c + "</" + etiqueta + ">";
-        }).join("") + "</tr>");
-      });
-      html.push("</table></div>");
-      salida.push(html.join(""));
-      tabla = [];
-    }
-
-    lineas.forEach(function (linea) {
-      if (/^\s*\|.*\|\s*$/.test(linea)) { cerrarParrafo(); tabla.push(linea); return; }
-      cerrarTabla();
-      if (!linea.trim()) { cerrarParrafo(); return; }
-      var encabezado = linea.match(/^(#{1,4})\s+(.*)$/);
-      if (encabezado) {
-        cerrarParrafo();
-        var nivel = encabezado[1].length;
-        salida.push("<h" + nivel + ">" + enLinea(encabezado[2]) + "</h" + nivel + ">");
-        return;
-      }
-      if (/^>\s?/.test(linea)) {
-        cerrarParrafo();
-        salida.push("<blockquote>" + enLinea(linea.replace(/^>\s?/, "")) + "</blockquote>");
-        return;
-      }
-      if (/^(-{3,}|\*{3,})$/.test(linea.trim())) { cerrarParrafo(); salida.push("<hr>"); return; }
-      if (/^\s*[-*]\s+/.test(linea)) {
-        cerrarParrafo();
-        salida.push("<p>• " + enLinea(linea.replace(/^\s*[-*]\s+/, "")) + "</p>");
-        return;
-      }
-      if (/^```/.test(linea)) { cerrarParrafo(); return; }
-      parrafo.push(linea.trim());
-    });
-    cerrarParrafo();
-    cerrarTabla();
-    return salida.join("\n");
-  }
-
-  function csvAHtml(texto) {
-    var datos = parsearCsv(texto);
-    var tope = 300;
-    var html = ['<div class="tabla-scroll"><table><tr>'];
-    datos.columnas.forEach(function (c) { html.push("<th>" + escapar(c) + "</th>"); });
-    html.push("</tr>");
-    datos.registros.slice(0, tope).forEach(function (r) {
-      html.push("<tr>" + datos.columnas.map(function (c) {
-        return "<td>" + escapar(r[c]) + "</td>";
-      }).join("") + "</tr>");
-    });
-    html.push("</table></div>");
-    if (datos.registros.length > tope) {
-      html.push("<p><em>Se muestran las " + tope + " primeras de " +
-        datos.registros.length + " filas. El CSV completo está en el enlace.</em></p>");
-    }
-    return html.join("");
-  }
-
-  /* ================= estado de la tabla ================= */
-
-  var COLUMNAS_POR_DEFECTO = ["titular", "fuente", "fecha", "relevancia_prefiltro"];
-  var MAX_VALORES_CHIP = 40;     // hasta aquí, una columna merece filtro propio
-                                 // (el desplegable aguanta muchos valores; lo que
-                                 //  no queremos es filtrar por titular o por URL)
-  var MAX_LARGO_CHIP = 50;       // valores más largos que esto no son
-                                 // categorías, son texto libre (los motivos)
-  // Todos los grupos van como desplegable, no como chips sueltos. Con el corpus
-  // sin clasificar cabían en una línea; en cuanto se clasifica salen diez o doce
-  // grupos y la barra se comía media pantalla. Los recuentos no se pierden: están
-  // dentro del desplegable, y verlos ahí es más legible que un muro de colores.
-  var MAX_CHIPS_EN_LINEA = 0;
-
-  // Nombres legibles para las columnas conocidas. Una columna que no esté aquí
-  // se muestra con su propio nombre, así que nada deja de funcionar.
-  var ETIQUETAS = {
-    fuente: "Fuente", fecha: "Fecha", titular: "Titular",
-    relevancia_prefiltro: "Pre-filtro", cuerpo_completo: "Texto",
-    motivo_prefiltro: "Motivo del pre-filtro", motivo_cuerpo: "Motivo del texto",
-    palabras_cuerpo: "Palabras", archivo: "Archivo", url: "Enlace", id: "Nº"
-  };
-  function bonito(columna) {
-    return ETIQUETAS[columna] ||
-      columna.replace(/_/g, " ").replace(/^./, function (c) { return c.toUpperCase(); });
-  }
-
-  var estado = {
-    columnas: [], registros: [], visibles: [], filtros: {},
-    orden: null, ordenAsc: true, origen: "", filas: []
-  };
-  // Las once columnas del contrato de descarga. Todo lo que venga ADEMÁS de
-  // esto es clasificación, y se muestra solo al cargar. Antes esta lista se
-  // rellenaba con las columnas del primer CSV leído; eso funcionaba al cargar
-  // un fichero aparte, pero dejaba de funcionar en cuanto la clasificación se
-  // fundía en el propio noticias.csv: al abrir la página, las columnas nuevas
-  // ya venían en el fichero y no se distinguían de las de siempre.
-  var ORIGINALES = ["id", "titular", "fuente", "fecha", "url", "cuerpo",
-                    "cuerpo_completo", "motivo_cuerpo", "palabras_cuerpo",
-                    "relevancia_prefiltro", "motivo_prefiltro"];
-
-  // El cuerpo del articulo no es una columna de tabla: son miles de caracteres
-  // por fila. Se lee en el panel, al pinchar. Tampoco se puede ocultar desde el
-  // selector, porque no tiene sentido mostrarla nunca.
-  var NUNCA_EN_TABLA = ["cuerpo", "texto"];
-
-  var zonaTabla = document.getElementById("zonaTabla");
-  var busqueda = document.getElementById("busqueda");
-  var cuenta = document.getElementById("cuenta");
-  var grupos = document.getElementById("grupos");
-  var menuColumnas = document.getElementById("menuColumnas");
-
-  function esNumerica(columna) {
-    var vistos = 0;
-    for (var i = 0; i < estado.registros.length && vistos < 25; i++) {
-      var v = String(estado.registros[i][columna] || "").trim();
-      if (!v) continue;
-      vistos++;
-      if (isNaN(Number(v))) return false;
-    }
-    return vistos > 0;
-  }
-
-  function valoresDe(columna) {
-    var cuentas = {};
-    estado.registros.forEach(function (r) {
-      var v = String(r[columna] == null ? "" : r[columna]).trim();
-      if (!v) return;
-      cuentas[v] = (cuentas[v] || 0) + 1;
-    });
-    return cuentas;
-  }
-
-  // Una columna merece filtro si tiene pocos valores distintos y cortos: así,
-  // si mañana aparece "tema" o "ambito", su filtro sale solo.
-  function columnasFiltrables() {
-    return estado.columnas.filter(function (c) {
-      var cuentas = valoresDe(c);
-      var claves = Object.keys(cuentas);
-      if (claves.length < 2 || claves.length > MAX_VALORES_CHIP) return false;
-      if (claves.length === estado.registros.length) return false;
-      return claves.every(function (k) { return k.length <= MAX_LARGO_CHIP; });
-    });
-  }
-
-  function filtrados() {
-    var termino = normalizar(busqueda.value);
-    return estado.registros.filter(function (r) {
-      for (var columna in estado.filtros) {
-        var elegidos = estado.filtros[columna];
-        if (elegidos && elegidos.length &&
-            elegidos.indexOf(String(r[columna]).trim()) === -1) return false;
-      }
-      if (!termino) return true;
-      return normalizar(estado.columnas.map(function (c) { return r[c]; }).join(" "))
-        .indexOf(termino) !== -1;
-    });
-  }
-
-  function ordenar(filas) {
-    if (!estado.orden) return filas;
-    var columna = estado.orden, numerica = esNumerica(columna),
-        signo = estado.ordenAsc ? 1 : -1;
-    return filas.slice().sort(function (a, b) {
-      var x = a[columna] == null ? "" : a[columna];
-      var y = b[columna] == null ? "" : b[columna];
-      if (numerica) return (Number(x) - Number(y)) * signo;
-      return String(x).localeCompare(String(y), "es") * signo;
-    });
-  }
-
-  var CLASES_MARCA = { alta: "alta", dudosa: "dudosa", fuera: "fuera" };
-
-  function celda(registro, columna) {
-    var valor = registro[columna] == null ? "" : String(registro[columna]);
-    var td = document.createElement("td");
-    td.className = "col-" + columna;
-    if (esNumerica(columna)) td.classList.add("numero");
-    // Las celdas se cortan a una línea, así que el valor entero va en el
-    // tooltip: con pasar el ratón se lee sin abrir la noticia.
-    if (valor.length > 30) td.title = valor;
-
-    if (/^https?:\/\//.test(valor)) {
-      var a = document.createElement("a");
-      a.href = valor; a.target = "_blank"; a.rel = "noopener";
-      a.textContent = valor.replace(/^https?:\/\//, "").slice(0, 44) +
-        (valor.length > 51 ? "…" : "");
-      a.addEventListener("click", function (e) { e.stopPropagation(); });
-      td.appendChild(a);
-      return td;
-    }
-    var clave = valor.toLowerCase();
-    if (CLASES_MARCA[clave] || clave === "si" || clave === "parcial" || clave === "no") {
-      var span = document.createElement("span");
-      span.className = "marca " + (CLASES_MARCA[clave] || "neutra");
-      span.textContent = valor;
-      td.appendChild(span);
-      return td;
-    }
-    td.textContent = valor;
-    return td;
-  }
-
-  function pintarTabla() {
-    estado.filas = ordenar(filtrados());
-
-    var tabla = document.createElement("table");
-    tabla.className = "datos";
-
-    var thead = document.createElement("thead");
-    var trCabecera = document.createElement("tr");
-    estado.visibles.forEach(function (columna) {
-      var th = document.createElement("th");
-      th.textContent = bonito(columna);
-      if (estado.orden === columna) {
-        var flecha = document.createElement("span");
-        flecha.className = "flecha";
-        flecha.textContent = estado.ordenAsc ? "▲" : "▼";
-        th.appendChild(flecha);
-      }
-      th.addEventListener("click", function () {
-        if (estado.orden === columna) estado.ordenAsc = !estado.ordenAsc;
-        else { estado.orden = columna; estado.ordenAsc = true; }
-        pintarTabla();
-      });
-      trCabecera.appendChild(th);
-    });
-    thead.appendChild(trCabecera);
-    tabla.appendChild(thead);
-
-    var tbody = document.createElement("tbody");
-    estado.filas.forEach(function (registro, indice) {
-      var tr = document.createElement("tr");
-      estado.visibles.forEach(function (columna) {
-        tr.appendChild(celda(registro, columna));
-      });
-      tr.addEventListener("click", function () { abrirModal(indice); });
-      tbody.appendChild(tr);
-    });
-    tabla.appendChild(tbody);
-
-    zonaTabla.textContent = "";
-    zonaTabla.appendChild(tabla);
-
-    var fuera = estado.registros.filter(function (r) {
-      return String(r.relevancia_prefiltro || "").trim() === "fuera";
-    }).length;
-    cuenta.innerHTML = "<strong>" + estado.filas.length + "</strong> de " +
-      estado.registros.length + " filas" +
-      (fuera ? " · " + fuera + " fuera de ámbito" : "") +
-      " · " + estado.columnas.length + " columnas";
-  }
-
-  /* ---------- grupos de filtro ---------- */
-
-  function alternarValor(columna, valor) {
-    var lista = estado.filtros[columna] || [];
-    var i = lista.indexOf(valor);
-    if (i === -1) lista.push(valor); else lista.splice(i, 1);
-    estado.filtros[columna] = lista;
-    pintarChips();
-    pintarTabla();
-  }
-
-  function pintarChips() {
-    grupos.textContent = "";
-    var colores = ["var(--g1)", "var(--g2)", "var(--g3)", "var(--g4)", "var(--g5)"];
-
-    columnasFiltrables().forEach(function (columna, indice) {
-      var cuentas = valoresDe(columna);
-      var claves = Object.keys(cuentas).sort(function (a, b) {
-        return cuentas[b] - cuentas[a] || a.localeCompare(b, "es");
-      });
-      var elegidos = estado.filtros[columna] || [];
-
-      var grupo = document.createElement("div");
-      grupo.className = "grupo";
-      grupo.style.setProperty("--color", colores[indice % colores.length]);
-
-      var nombre = document.createElement("span");
-      nombre.className = "nombre";
-      nombre.textContent = bonito(columna);
-      grupo.appendChild(nombre);
-
-      if (claves.length <= MAX_CHIPS_EN_LINEA) {
-        // Pocos valores: chips a la vista.
-        var caja = document.createElement("div");
-        caja.className = "chips";
-        claves.forEach(function (valor) {
-          var chip = document.createElement("button");
-          chip.className = "chip";
-          chip.setAttribute("aria-pressed", elegidos.indexOf(valor) !== -1);
-          chip.innerHTML = escapar(valor) + '<span class="n">' + cuentas[valor] + "</span>";
-          chip.addEventListener("click", function () { alternarValor(columna, valor); });
-          caja.appendChild(chip);
-        });
-        grupo.appendChild(caja);
-      } else {
-        // Muchos valores (las fuentes, por ejemplo): un desplegable, para que
-        // la barra no se parta en dos filas.
-        var contenedor = document.createElement("div");
-        contenedor.className = "desplegable";
-        var boton = document.createElement("button");
-        boton.className = "chip";
-        boton.setAttribute("aria-pressed", elegidos.length > 0);
-        boton.innerHTML = (elegidos.length
-          ? escapar(elegidos.length === 1 ? elegidos[0] : elegidos.length + " elegidas")
-          : "todas") + '<span class="n">' + claves.length + "</span> ▾";
-        var menu = document.createElement("div");
-        menu.className = "menu";
-        menu.hidden = true;
-
-        claves.forEach(function (valor) {
-          var label = document.createElement("label");
-          var casilla = document.createElement("input");
-          casilla.type = "checkbox";
-          casilla.checked = elegidos.indexOf(valor) !== -1;
-          casilla.addEventListener("change", function () {
-            alternarValor(columna, valor);
-          });
-          label.appendChild(casilla);
-          label.appendChild(document.createTextNode(valor));
-          var n = document.createElement("span");
-          n.className = "n";
-          n.textContent = cuentas[valor];
-          label.appendChild(n);
-          menu.appendChild(label);
-        });
-        if (elegidos.length) {
-          var sep = document.createElement("div");
-          sep.className = "separador";
-          menu.appendChild(sep);
-          var limpiar = document.createElement("button");
-          limpiar.className = "chip";
-          limpiar.textContent = "Quitar este filtro";
-          limpiar.addEventListener("click", function () {
-            estado.filtros[columna] = [];
-            pintarChips(); pintarTabla();
-          });
-          menu.appendChild(limpiar);
-        }
-        boton.addEventListener("click", function (e) {
-          e.stopPropagation();
-          var abierto = menu.hidden;
-          cerrarMenus();
-          menu.hidden = !abierto;
-        });
-        contenedor.appendChild(boton);
-        contenedor.appendChild(menu);
-        grupo.appendChild(contenedor);
-      }
-      grupos.appendChild(grupo);
-    });
-  }
-
-  function cerrarMenus() {
-    Array.prototype.forEach.call(document.querySelectorAll(".menu"), function (m) {
-      m.hidden = true;
-    });
-    document.getElementById("botonColumnas").setAttribute("aria-expanded", "false");
-  }
-  document.addEventListener("click", function (e) {
-    if (!e.target.closest(".desplegable")) cerrarMenus();
-  });
-
-  function pintarMenuColumnas() {
-    menuColumnas.textContent = "";
-    estado.columnas.forEach(function (columna) {
-      if (NUNCA_EN_TABLA.indexOf(columna) !== -1) return;
-      var label = document.createElement("label");
-      var casilla = document.createElement("input");
-      casilla.type = "checkbox";
-      casilla.checked = estado.visibles.indexOf(columna) !== -1;
-      casilla.addEventListener("change", function () {
-        if (casilla.checked) {
-          if (estado.visibles.indexOf(columna) === -1) estado.visibles.push(columna);
-        } else {
-          estado.visibles = estado.visibles.filter(function (c) { return c !== columna; });
-        }
-        if (!estado.visibles.length) estado.visibles = [estado.columnas[0]];
-        estado.visibles = estado.columnas.filter(function (c) {
-          return estado.visibles.indexOf(c) !== -1;
-        });
-        pintarTabla();
-      });
-      label.appendChild(casilla);
-      label.appendChild(document.createTextNode(bonito(columna)));
-      menuColumnas.appendChild(label);
-    });
-  }
-
-  /* ================= modal de lectura ================= */
-
-  var modal = document.getElementById("modal");
-  var lectura = document.getElementById("lectura");
-  var modalEtiquetas = document.getElementById("modalEtiquetas");
-  var indiceAbierto = -1;
-
-  function detalleComoTabla(registro) {
-    var html = ['<div class="tabla-scroll"><table>'];
-    estado.columnas.forEach(function (c) {
-      html.push("<tr><th>" + escapar(bonito(c)) + "</th><td>" +
-                escapar(registro[c]) + "</td></tr>");
-    });
-    html.push("</table></div>");
-    return html.join("");
-  }
-
-  function abrirModal(indice) {
-    if (indice < 0 || indice >= estado.filas.length) return;
-    indiceAbierto = indice;
-    var registro = estado.filas[indice];
-
-    modal.hidden = false;
-    document.body.style.overflow = "hidden";
-
-    modalEtiquetas.textContent = "";
-    ["relevancia_prefiltro", "cuerpo_completo", "fuente", "fecha"].forEach(function (c) {
-      if (!registro[c]) return;
-      var s = document.createElement("span");
-      s.className = "marca " +
-        (CLASES_MARCA[String(registro[c]).toLowerCase()] || "neutra");
-      s.textContent = bonito(c) + ": " + registro[c];
-      modalEtiquetas.appendChild(s);
-    });
-
-    // El texto del articulo viene en la columna "cuerpo" del propio CSV, no en
-    // un fichero aparte. Por eso el visor funciona abriendolo con doble clic:
-    // no hay nada que ir a buscar al disco.
-    var cuerpo = registro.cuerpo || registro.texto || "";
-
-    lectura.innerHTML = "";
-    var titulo = document.createElement("h1");
-    titulo.textContent = registro.titular || "Fila";
-    lectura.appendChild(titulo);
-
-    if (registro.fuente || registro.fecha || registro.url) {
-      var linea = document.createElement("p");
-      linea.className = "credito";
-      var partes = [];
-      if (registro.fuente) partes.push(escapar(registro.fuente));
-      if (registro.fecha) partes.push(escapar(registro.fecha));
-      if (registro.url) {
-        partes.push('<a href="' + escapar(registro.url) +
-                    '" target="_blank" rel="noopener">ver original</a>');
-      }
-      linea.innerHTML = partes.join(" · ");
-      lectura.appendChild(linea);
-    }
-
-    if (cuerpo.trim()) {
-      cuerpo.split(/\n\s*\n/).forEach(function (parrafo) {
-        if (!parrafo.trim()) return;
-        var p = document.createElement("p");
-        p.textContent = parrafo.trim();
-        lectura.appendChild(p);
-      });
-    } else {
-      var sin = document.createElement("p");
-      sin.className = "vacio";
-      sin.textContent = "Esta fila no trae el texto del artículo. " +
-        "El enlace de arriba lleva al original.";
-      lectura.appendChild(sin);
-    }
-
-    var detalle = document.createElement("details");
-    var resumen = document.createElement("summary");
-    resumen.textContent = "Todos los campos de esta fila";
-    detalle.appendChild(resumen);
-    var caja = document.createElement("div");
-    caja.innerHTML = detalleComoTabla(registro);
-    detalle.appendChild(caja);
-    lectura.appendChild(detalle);
-    lectura.parentNode.scrollTop = 0;
-  }
-
-  function cerrarModal() {
-    modal.hidden = true;
-    indiceAbierto = -1;
-    document.body.style.overflow = "";
-  }
-
-  document.getElementById("modalCerrar").addEventListener("click", cerrarModal);
-  document.getElementById("modalFondo").addEventListener("click", cerrarModal);
-  document.getElementById("modalAnterior").addEventListener("click", function () {
-    abrirModal(indiceAbierto - 1);
-  });
-  document.getElementById("modalSiguiente").addEventListener("click", function () {
-    abrirModal(indiceAbierto + 1);
-  });
-  document.addEventListener("keydown", function (e) {
-    if (modal.hidden) return;
-    if (e.key === "Escape") cerrarModal();
-    if (e.key === "ArrowRight") abrirModal(indiceAbierto + 1);
-    if (e.key === "ArrowLeft") abrirModal(indiceAbierto - 1);
-  });
-
-  /* ================= carga de datos ================= */
-
-  function cargar(columnas, registros, origen) {
-    estado.columnas = columnas;
-    estado.registros = registros;
-    estado.filtros = {};
-    estado.orden = null;
-    estado.origen = origen;
-
-    var porDefecto = COLUMNAS_POR_DEFECTO.filter(function (c) {
-      return columnas.indexOf(c) !== -1;
-    });
-    estado.visibles = porDefecto.length ? porDefecto : columnas.slice(0, 6);
-    // Las columnas nuevas que no estaban en el corpus original se muestran
-    // desde el principio: son justo las que interesa ver al clasificar.
-    columnas.forEach(function (c) {
-      if (ORIGINALES.indexOf(c) === -1 && estado.visibles.indexOf(c) === -1) {
-        estado.visibles.push(c);
-      }
-    });
-    estado.visibles = columnas.filter(function (c) {
-      return estado.visibles.indexOf(c) !== -1 && NUNCA_EN_TABLA.indexOf(c) === -1;
-    });
-
-    cerrarModal();
-    pintarMenuColumnas();
-    pintarChips();
-    pintarTabla();
-    document.getElementById("estadoCarga").textContent =
-      origen + " · " + registros.length + " filas · " + columnas.length + " columnas";
-  }
-
-  /* ================= controles ================= */
-
-  busqueda.addEventListener("input", pintarTabla);
-
-  document.getElementById("botonLimpiar").addEventListener("click", function () {
-    estado.filtros = {};
-    busqueda.value = "";
-    pintarChips();
-    pintarTabla();
-  });
-
-  var botonColumnas = document.getElementById("botonColumnas");
-  botonColumnas.addEventListener("click", function (e) {
-    e.stopPropagation();
-    var abierto = menuColumnas.hidden;
-    cerrarMenus();
-    menuColumnas.hidden = !abierto;
-    botonColumnas.setAttribute("aria-expanded", abierto);
-  });
-
-  var cargador = document.getElementById("cargador");
-  var botonCargar = document.getElementById("botonCargar");
-  botonCargar.addEventListener("click", function () {
-    var abierto = cargador.hidden;
-    cargador.hidden = !abierto;
-    botonCargar.setAttribute("aria-expanded", abierto);
-  });
-
-  document.getElementById("ficheroCsv").addEventListener("change", function (e) {
-    var fichero = e.target.files && e.target.files[0];
-    if (!fichero) return;
-    var lector = new FileReader();
-    lector.onload = function () {
-      var datos = parsearCsv(quitarBom(lector.result));
-      if (!datos.registros.length) { avisar("Ese CSV no tiene filas."); return; }
-      cargar(datos.columnas, datos.registros, fichero.name);
-    };
-    lector.readAsText(fichero, "utf-8");
-  });
-
-  document.getElementById("botonPegar").addEventListener("click", function () {
-    var texto = document.getElementById("pegado").value.trim();
-    if (!texto) { avisar("No hay nada pegado."); return; }
-    var datos = parsearCsv(texto);
-    if (!datos.registros.length) { avisar("El CSV pegado no tiene filas."); return; }
-    cargar(datos.columnas, datos.registros, "CSV pegado");
-  });
-
-  document.getElementById("botonOriginal").addEventListener("click", arrancarNoticias);
-
-  /* ================= arranque ================= */
-
-  function arrancarNoticias() {
-    // Se intenta cargar noticias.csv que esta al lado. Funciona si la pagina se
-    // sirve desde un servidor o desde internet.
-    //
-    // Abriendo el HTML con doble clic NO funciona, y no es un fallo nuestro: el
-    // navegador prohibe que una pagina abierta desde el disco lea ficheros de
-    // su carpeta. Por eso, si falla, no se enseña un error tecnico sino la
-    // instruccion de usar "Abrir un CSV", que sí funciona en ese caso porque
-    // el fichero lo elige la persona.
-    leerTexto(base + "noticias.csv").then(function (texto) {
-      var datos = parsearCsv(texto);
-      if (!datos.registros.length) throw new Error("el fichero no tiene filas");
-      cargar(datos.columnas, datos.registros, "noticias.csv");
-    }).catch(function () {
-      avisar("Pulse «Abrir un CSV» y elija el fichero noticias.csv que está " +
-             "junto a esta página. (Al abrir la página con doble clic, el " +
-             "navegador no le deja leer ficheros por su cuenta: hay que " +
-             "elegirlo a mano. Es una única vez.)");
-    });
-  }
-
-  arrancarNoticias();
-
-})();
-</script>
 </body>
 </html>
