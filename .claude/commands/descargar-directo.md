@@ -38,7 +38,7 @@ Lee `script/fuentes.csv`. Tiene cuatro columnas: `nombre`, `url`, `tipo`, `tope`
 
 El `tipo` decide una sola cosa: si la fuente es `generalista` u `oficial`, **filtra por
 tema antes de aceptar la noticia** —publican de todo y aquí solo interesa vivienda, suelo,
-alquiler, rehabilitación, construcción, urbanismo, hipotecas, edificación y energía
+alquiler, rehabilitación, construcción, urbanismo, hipotecas, edificación, administracion publica, eficiencia energetica economia general, politicas sociales, Agencia de Vivienda y Rehabilitacion de Andalucia, compra-venta de vivienda y energía.
 aplicada a la vivienda—. Las `especializada` y `suscripcion` entran sin ese filtro.
 
 El `tope` es cuántas noticias como máximo se cogen de esa fuente.
