@@ -34,3 +34,5 @@ Respuesta: No hay dilema. No puedes alquilar. La oferta de alquiler ha caído es
 Por lo tanto, aquel que vive de alquiler, que se haga un replanteamiento y es que piense ya en comprar vivienda, porque muy probablemente cuando le acabe el contrato le dirá el propietario que vende la vivienda porque está harto de tantas regulaciones que le machacan la rentabilidad y le dan una gran inseguridad en el negocio del arrendamiento de viviendas.
 
 En Fotocasa, contamos con un excelente equipo de expertos dedicados a crear contenido relevante para nuestros lectores. Si te ha gustado este artículo, nos encantaría que lo publicaras en tu sitio web. Por favor, cita a Fotocasa como fuente. Gracias por tu apoyo.
+
+Curioso que no pare de recibir alertas en todos los portales de viviendas que bajan de precio. Como siempre, buen indicador contrario
