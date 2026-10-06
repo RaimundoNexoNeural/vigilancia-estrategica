@@ -7,6 +7,7 @@ formato exacto, en lenguaje sencillo y sin pasar de 200 palabras (sin contar la 
 
 LECTURA: indica en una línea si has leído el fichero entero o solo una parte, y cuántas filas y columnas tiene.
 
+
 FICHA: [nombre del fichero]
 
 | Campo | Resumen |
